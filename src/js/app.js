@@ -1,7 +1,8 @@
 export default function orderByProps(obj, array) {
   const result = [];
+
   for (const variable in obj) {
-    if (obj.key !== undefined) {
+    if (variable in obj) {
       result.push({ key: variable, value: obj[variable] });
     }
   }
