@@ -1,12 +1,18 @@
+/* eslint-disable linebreak-style */
 export default function orderByProps(obj, array) {
+  const step = [];
   const result = [];
 
-  for (const variable in obj) {
-    if (variable in obj) {
-      result.push({ key: variable, value: obj[variable] });
+  for (const dir in obj) {
+    if (array.includes(dir)) {
+      result[array.indexOf(dir)] = { key: dir, value: obj[dir] };
+    } else {
+      step.push({ key: dir, value: obj[dir] });
     }
   }
-  result.sort((a, b) => (a.key > b.key ? 1 : -1));
-  result.sort((a) => (array.includes(a.key) ? -1 : 1));
+
+  step.sort((a, b) => (a.key > b.key ? 1 : -1));
+  step.forEach((el) => result.push(el));
+
   return result;
 }
